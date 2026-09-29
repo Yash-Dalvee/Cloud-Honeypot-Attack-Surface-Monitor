@@ -1,0 +1,8 @@
+{
+  "185.220.101.45": {"country": "Germany", "countryCode": "DE", "city": "Frankfurt", "regionName": "Hesse", "isp": "Tor Exit Relay Network", "org": "Tor Project Exit Node", "as": "AS208294 FRANTECH SOLUTIONS", "asname": "FRANTECH", "lat": 50.1155, "lon": 8.6842},
+  "45.155.205.233": {"country": "Netherlands", "countryCode": "NL", "city": "Amsterdam", "regionName": "North Holland", "isp": "MEVSPACE sp. z o.o.", "org": "Bulletproof Hosting Ltd", "as": "AS202448 MEVSPACE", "asname": "MEVSPACE", "lat": 52.3676, "lon": 4.9041},
+  "194.169.175.36": {"country": "Bulgaria", "countryCode": "BG", "city": "Sofia", "regionName": "Sofia City", "isp": "Trending Web Sofia", "org": "Trending Web EOOD", "as": "AS62282 TRENDING-WEB", "asname": "TRENDING-WEB", "lat": 42.6977, "lon": 23.3219},
+  "103.145.13.20": {"country": "Vietnam", "countryCode": "VN", "city": "Hanoi", "regionName": "Hanoi", "isp": "Viettel Group", "org": "Viettel Corporation", "as": "AS7552 VIETEL-AS-AP", "asname": "VIETEL-AS-AP", "lat": 21.0278, "lon": 105.8342},
+  "91.240.118.168": {"country": "Ukraine", "countryCode": "UA", "city": "Kyiv", "regionName": "Kyiv City", "isp": "FOP Gubina", "org": "Private Hosting Provider", "as": "AS58271 UAB-ASN", "asname": "UAB-ASN", "lat": 50.4501, "lon": 30.5234},
+  "218.92.0.212": {"country": "China", "countryCode": "CN", "city": "Nanjing", "regionName": "Jiangsu", "isp": "China Telecom", "org": "Chinanet Jiangsu Province Network", "as": "AS4134 CHINANET-BACKBONE", "asname": "CHINANET-BACKBONE", "lat": 32.0603, "lon": 118.7969}
+}

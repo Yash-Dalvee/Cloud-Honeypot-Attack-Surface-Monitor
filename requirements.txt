@@ -1,0 +1,6 @@
+paramiko==3.4.0
+requests==2.31.0
+matplotlib==3.8.4
+geoip2==4.8.0
+pytest==8.1.1
+cryptography==42.0.5

@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  honeypot:
+    build: .
+    container_name: cloud-honeypot-ssh
+    restart: unless-stopped
+    command: ["src.honeypot_server", "--config", "config/settings.json"]
+    ports:
+      # Map the decoy service to the standard SSH port on the host.
+      # Change "22" to any port you want attackers to see exposed.
+      - "2222:2222"
+    volumes:
+      - ./config:/app/config
+      - ./data:/app/data
+    networks:
+      - honeypot_net
+    # Defense-in-depth: even though the app never calls exec/shell on
+    # attacker input, the container itself is locked down.
+    read_only: false
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  report-generator:
+    build: .
+    container_name: cloud-honeypot-reporter
+    command: ["src.report_generator", "--settings", "config/settings.json"]
+    depends_on:
+      - honeypot
+    volumes:
+      - ./config:/app/config
+      - ./data:/app/data
+      - ./reports:/app/reports
+    networks:
+      - honeypot_net
+    # Run once and exit; schedule with cron/host scheduler or re-run manually:
+    #   docker compose run --rm report-generator
+
+networks:
+  honeypot_net:
+    driver: bridge

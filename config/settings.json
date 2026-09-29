@@ -1,0 +1,47 @@
+{
+  "honeypot": {
+    "enabled": true,
+    "bind_host": "0.0.0.0",
+    "bind_port": 2222,
+    "ssh_banner": "SSH-2.0-OpenSSH_7.9p1 Debian-10+deb10u2",
+    "hostname_fake": "prod-db-server-01",
+    "max_connections": 200,
+    "session_timeout_seconds": 30,
+    "host_key_path": "config/honeypot_host_key",
+    "fake_filesystem": {
+      "/etc/passwd": "root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\nadmin:x:1000:1000:admin:/home/admin:/bin/bash\n",
+      "uname -a": "Linux prod-db-server-01 4.19.0-21-amd64 #1 SMP Debian 4.19.249-2 x86_64 GNU/Linux"
+    },
+    "credential_allowlist_note": "This honeypot NEVER validates real credentials and NEVER grants real shell access. All authentication attempts are logged and rejected or routed to a fake shell."
+  },
+  "log_parser": {
+    "input_log_path": "data/cowrie_sample_logs.json",
+    "output_normalized_path": "data/normalized_events.json",
+    "output_elk_path": "data/elk_export.json"
+  },
+  "geo_enrichment": {
+    "provider": "ip-api",
+    "ip_api_url": "http://ip-api.com/json/{ip}?fields=status,message,country,countryCode,region,regionName,city,zip,lat,lon,isp,org,as,asname,query",
+    "geolite2_fallback_db": "config/GeoLite2-City.mmdb",
+    "geolite2_asn_db": "config/GeoLite2-ASN.mmdb",
+    "request_timeout_seconds": 5,
+    "rate_limit_delay_seconds": 1.5,
+    "cache_path": "data/geo_cache.json",
+    "offline_mode": true,
+    "offline_note": "offline_mode=true uses a bundled static IP->geo lookup table (data/geo_static_fallback.json) so the project runs fully without network access. Set to false to query ip-api.com live."
+  },
+  "report_generator": {
+    "output_html_path": "reports/attack_report.html",
+    "output_markdown_path": "reports/attack_report.md",
+    "top_n_ips": 10,
+    "top_n_credentials": 10,
+    "brute_force_window_minutes": 60,
+    "company_name": "Acme Cloud Security Operations",
+    "report_title": "Cloud Honeypot & Attack Surface Monitor - Threat Intelligence Report"
+  },
+  "elk_export": {
+    "index_name": "honeypot-events",
+    "ecs_version": "8.11.0",
+    "wazuh_compatible": true
+  }
+}
